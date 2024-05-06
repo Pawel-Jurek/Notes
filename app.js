@@ -15,9 +15,9 @@ app.use(express.static('public'));
 app.use(expressLayouts);
 app.set('layout', './layouts/main');
 app.set('view engine', 'ejs');
-app.get('/', function(req,res){
-    res.render('index');
-});
+
+// Routes
+app.use('/', require('./server/routes/index'));
 
 app.listen(port, () => {
     console.log(`App listening on port ${port}`)

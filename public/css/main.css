@@ -1,0 +1,20 @@
+body{
+    background-color: antiquewhite;
+}
+
+.graduate-regular {
+    font-family: "Graduate", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  main{
+    min-height: calc(100vh - 272px);
+  }
+
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}

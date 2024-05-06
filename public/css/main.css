@@ -1,5 +1,10 @@
 body{
-    background-color: antiquewhite;
+    background-color: var(--background-color);
+    font-family: 'Graduate', serif;
+    color: var(--bs-primary-rgb);
+    font-weight: 300;
+    font-size: 1.2rem;
+    /*background-image: url();*/
 }
 
 .graduate-regular {
@@ -10,6 +15,7 @@ body{
   
   main{
     min-height: calc(100vh - 272px);
+    padding: 20px;
   }
 
   html, body {
@@ -17,4 +23,21 @@ body{
     margin: 0;
     padding: 0;
     overflow: hidden;
+}
+:root {
+    --background-color: #FFC700;
+    --bs-primary-rgb: #12296C;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Unbounded', cursive;
+    font-weight: 800;
+}
+
+.button{
+    background-color: var(--bs-primary-rgb);
+    color: white;
+}
+.button:hover {
+    color: rgb(240, 252, 170);
 }

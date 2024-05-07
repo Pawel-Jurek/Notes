@@ -18,6 +18,7 @@ app.set('view engine', 'ejs');
 
 // Routes
 app.use('/', require('./server/routes/index'));
+app.use('/', require('./server/routes/dashboard'));
 
 app.get('*', function(req, res){
     //res.status(404).send('404 Page not found :(');

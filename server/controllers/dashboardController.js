@@ -81,3 +81,24 @@ exports.deleteNote = async(req, res) => {
         console.log(error);
     }
 }
+
+exports.addNote = async(req, res) => {
+    res.render('dashboard/add', {
+        layout: '../views/layouts/dashboard'
+    })
+}
+
+exports.submitNote = async(req, res) => {
+    try {
+        await Note.create(
+            { 
+                title: req.body.title,
+                body: req.body.body,
+                user: req.user.id
+            } 
+        );
+        res.redirect('/dashboard');
+    } catch (error) {
+        console.log(error);
+    }
+}

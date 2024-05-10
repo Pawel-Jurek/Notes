@@ -9,6 +9,7 @@ router.put('/dashboard/item/:id', isLoggedIn, dashboardController.updateNote);
 router.delete('/dashboard/item-delete/:id', isLoggedIn, dashboardController.deleteNote);
 router.get('/dashboard/add', isLoggedIn, dashboardController.addNote);
 router.post('/dashboard/add', isLoggedIn, dashboardController.submitNote);
-
+router.get('/dashboard/search', isLoggedIn, dashboardController.search);
+router.post('/dashboard/search', isLoggedIn, dashboardController.submitSearch);
 
 module.exports = router;

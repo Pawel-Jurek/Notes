@@ -63,7 +63,8 @@ exports.updateNote = async(req, res) => {
             { _id: req.params.id },
             { 
                 title: req.body.title,
-                body: req.body.body
+                body: req.body.body,
+                updatedAt: Date.now()
             } 
         ).where({user: req.user.id});
         res.redirect('/dashboard');

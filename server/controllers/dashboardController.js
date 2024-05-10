@@ -103,3 +103,35 @@ exports.submitNote = async(req, res) => {
         console.log(error);
     }
 }
+
+exports.search = async(req, res) => {
+    try {
+        res.render('dashboard/search', {
+            searchResults: '',
+            layout: '../views/layouts/dashboard'
+        })
+    } catch (error){
+        console.log(error);
+    }
+}
+
+exports.submitSearch = async(req, res) => {
+    try {
+        let searchTerm = req.body.searchTerm;
+        const cleanSearch = searchTerm.replace(/[^a-zA-Z0-9]/g, "");
+        const results = await Note.find({
+            $or: [
+                {title: {$regex:new RegExp(cleanSearch, 'i')}},
+                {body: {$regex:new RegExp(cleanSearch, 'i')}}
+            ]
+        }).where({user: req.user.id});
+
+        res.render('dashboard/search', {
+            searchResults: results,
+            layout: '../views/layouts/dashboard'
+        })
+
+    } catch (error){
+        console.log(error);
+    }
+}

@@ -41,3 +41,65 @@ exports.dashboard = async (req, res) => {
     }
     
 }
+
+exports.viewNote = async(req, res) => {
+    const note = await Note.findById(req.params.id)
+    .where({user: req.user.id}).lean();
+
+    if (note) {
+        res.render('dashboard/view-note', {
+            noteID: req.params.id,
+            note,
+            layout: '../views/layouts/dashboard'
+        });
+    } else {
+        res.send("Something went wrong")
+    }
+}
+
+exports.updateNote = async(req, res) => {
+    try {
+        await Note.findByIdAndUpdate(
+            { _id: req.params.id },
+            { 
+                title: req.body.title,
+                body: req.body.body,
+                updatedAt: Date.now()
+            } 
+        ).where({user: req.user.id});
+        res.redirect('/dashboard');
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+exports.deleteNote = async(req, res) => {
+    try {
+        await Note.deleteOne({ _id: req.params.id })
+        .where({user: req.user.id});
+        res.redirect('/dashboard');
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+exports.addNote = async(req, res) => {
+    res.render('dashboard/add', {
+        layout: '../views/layouts/dashboard'
+    })
+}
+
+exports.submitNote = async(req, res) => {
+    try {
+        await Note.create(
+            { 
+                title: req.body.title,
+                body: req.body.body,
+                user: req.user.id
+            } 
+        );
+        res.redirect('/dashboard');
+    } catch (error) {
+        console.log(error);
+    }
+}
